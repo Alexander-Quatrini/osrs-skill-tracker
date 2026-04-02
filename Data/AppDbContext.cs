@@ -10,11 +10,42 @@ public class AppDbContext : DbContext
     public DbSet<Player> Players => Set<Player>();
     public DbSet<Skill> Skills => Set<Skill>();
     public DbSet<Goal> Goals => Set<Goal>();
+    public DbSet<GoalRequirement> GoalRequirements => Set<GoalRequirement>();
     public DbSet<XpSnapshot> XpSnapshots => Set<XpSnapshot>();
+    public DbSet<BossKill> BossKills => Set<BossKill>();
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
+
+        modelBuilder.Entity<Player>()
+            .HasMany(p => p.Goals)
+            .WithOne(g => g.Player)
+            .HasForeignKey(g => g.PlayerId)
+            .OnDelete(DeleteBehavior.Cascade);
+
+        modelBuilder.Entity<Player>()
+            .HasMany(p => p.XpSnapshots)
+            .WithOne(s => s.Player)
+            .HasForeignKey(s => s.PlayerId)
+            .OnDelete(DeleteBehavior.Cascade);
+
+        modelBuilder.Entity<Player>()
+            .HasMany(p => p.BossKills)
+            .WithOne(b => b.Player)
+            .HasForeignKey(b => b.PlayerId)
+            .OnDelete(DeleteBehavior.Cascade);
+
+        modelBuilder.Entity<Goal>()
+            .HasMany(g => g.Requirements)
+            .WithOne(r => r.Goal)
+            .HasForeignKey(r => r.GoalId)
+            .OnDelete(DeleteBehavior.Cascade);
+
+        modelBuilder.Entity<GoalRequirement>()
+            .HasOne(r => r.Skill)
+            .WithMany()
+            .HasForeignKey(r => r.SkillId);
 
         modelBuilder.Entity<Skill>().HasData(
             new Skill { Id = 1,  Name = "Attack",       IconKey = "attack",       DisplayOrder = 1  },

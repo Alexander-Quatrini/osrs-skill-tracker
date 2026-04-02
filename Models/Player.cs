@@ -8,4 +8,5 @@ public class Player
     public DateTime LastUpdated { get; set; }
     public ICollection<Goal> Goals { get; set; } = [];
     public ICollection<XpSnapshot> XpSnapshots { get; set; } = [];
+    public ICollection<BossKill> BossKills { get; set; } = [];
 }
