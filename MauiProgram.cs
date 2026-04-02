@@ -1,4 +1,6 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
+using OsrsSkillTracker.Data;
 
 namespace OsrsSkillTracker;
 
@@ -19,6 +21,18 @@ public static class MauiProgram
 		builder.Logging.AddDebug();
 #endif
 
-		return builder.Build();
+		var dbPath = Path.Combine(FileSystem.AppDataDirectory, "osrs_tracker.db");
+		builder.Services.AddDbContext<AppDbContext>(options =>
+			options.UseSqlite($"Data Source={dbPath}"));
+
+		var app = builder.Build();
+
+		using (var scope = app.Services.CreateScope())
+		{
+			var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+			db.Database.EnsureCreated();
+		}
+
+		return app;
 	}
 }
