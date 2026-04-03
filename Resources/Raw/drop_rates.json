@@ -1,0 +1,41 @@
+{
+  "bosses": [
+    {
+      "bossKey": "zulrah",
+      "displayName": "Zulrah",
+      "uniques": [
+        { "itemName": "Tanzanite Fang", "dropRate": 512 },
+        { "itemName": "Magic Fang", "dropRate": 512 },
+        { "itemName": "Serpentine Visage", "dropRate": 512 }
+      ]
+    },
+    {
+      "bossKey": "lunar_chests",
+      "displayName": "Moons of Peril",
+      "uniques": [
+        { "itemName": "Dual Macuahuitl", "dropRate": 200 },
+        { "itemName": "Eclipse Atlatl", "dropRate": 200 },
+        { "itemName": "Blood Moon Helm", "dropRate": 200 },
+        { "itemName": "Blood Moon Chestplate", "dropRate": 200 },
+        { "itemName": "Blood Moon Tassets", "dropRate": 200 },
+        { "itemName": "Blue Moon Helm", "dropRate": 200 },
+        { "itemName": "Blue Moon Chestplate", "dropRate": 200 },
+        { "itemName": "Blue Moon Tassets", "dropRate": 200 },
+        { "itemName": "Eclipse Moon Helm", "dropRate": 200 },
+        { "itemName": "Eclipse Moon Chestplate", "dropRate": 200 },
+        { "itemName": "Eclipse Moon Tassets", "dropRate": 200 }
+      ]
+    },
+    {
+      "bossKey": "the_royal_titans",
+      "displayName": "The Royal Titans",
+      "uniques": [
+        { "itemName": "Sunfire Fanatic Helm", "dropRate": 300 },
+        { "itemName": "Sunfire Fanatic Cuirass", "dropRate": 300 },
+        { "itemName": "Sunfire Fanatic Chausses", "dropRate": 300 },
+        { "itemName": "Ember Staff", "dropRate": 300 },
+        { "itemName": "Icefire Shield", "dropRate": 300 }
+      ]
+    }
+  ]
+}
