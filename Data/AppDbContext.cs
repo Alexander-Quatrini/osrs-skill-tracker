@@ -70,7 +70,8 @@ public class AppDbContext : DbContext
             new Skill { Id = 20, Name = "Slayer",       IconKey = "slayer",       DisplayOrder = 20 },
             new Skill { Id = 21, Name = "Farming",      IconKey = "farming",      DisplayOrder = 21 },
             new Skill { Id = 22, Name = "Construction", IconKey = "construction", DisplayOrder = 22 },
-            new Skill { Id = 23, Name = "Hunter",       IconKey = "hunter",       DisplayOrder = 23 }
+            new Skill { Id = 23, Name = "Hunter",       IconKey = "hunter",       DisplayOrder = 23 },
+            new Skill { Id = 24, Name = "Sailing",      IconKey = "sailing",      DisplayOrder = 24 }
         );
     }
 }
