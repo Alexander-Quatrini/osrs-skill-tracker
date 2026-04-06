@@ -4,37 +4,41 @@
       "bossKey": "zulrah",
       "displayName": "Zulrah",
       "uniques": [
-        { "itemName": "Tanzanite Fang", "dropRate": 512 },
-        { "itemName": "Magic Fang", "dropRate": 512 },
-        { "itemName": "Serpentine Visage", "dropRate": 512 }
+        { "itemName": "Tanzanite Fang", "dropRate": 128 },
+        { "itemName": "Magic Fang", "dropRate": 128 },
+        { "itemName": "Serpentine Visage", "dropRate": 128 },
+        { "itemName": "Uncut Onyx", "dropRate": 128 },
+        { "itemName": "Tanzanite Mutagen", "dropRate": 6554 },
+        { "itemName": "Magma Mutagen", "dropRate": 6554 }
       ]
     },
     {
       "bossKey": "lunar_chests",
-      "displayName": "Moons of Peril",
+      "displayName": "Lunar Chests",
       "uniques": [
-        { "itemName": "Dual Macuahuitl", "dropRate": 200 },
-        { "itemName": "Eclipse Atlatl", "dropRate": 200 },
-        { "itemName": "Blood Moon Helm", "dropRate": 200 },
-        { "itemName": "Blood Moon Chestplate", "dropRate": 200 },
-        { "itemName": "Blood Moon Tassets", "dropRate": 200 },
-        { "itemName": "Blue Moon Helm", "dropRate": 200 },
-        { "itemName": "Blue Moon Chestplate", "dropRate": 200 },
-        { "itemName": "Blue Moon Tassets", "dropRate": 200 },
-        { "itemName": "Eclipse Moon Helm", "dropRate": 200 },
-        { "itemName": "Eclipse Moon Chestplate", "dropRate": 200 },
-        { "itemName": "Eclipse Moon Tassets", "dropRate": 200 }
+        { "itemName": "Blood Moon Helm", "dropRate": 224 },
+        { "itemName": "Blood Moon Chestplate", "dropRate": 224 },
+        { "itemName": "Blood Moon Tassets", "dropRate": 224 },
+        { "itemName": "Dual Macuahuitl", "dropRate": 224 },
+        { "itemName": "Blue Moon Helm", "dropRate": 224 },
+        { "itemName": "Blue Moon Chestplate", "dropRate": 224 },
+        { "itemName": "Blue Moon Tassets", "dropRate": 224 },
+        { "itemName": "Blue Moon Spear", "dropRate": 224 },
+        { "itemName": "Eclipse Moon Helm", "dropRate": 224 },
+        { "itemName": "Eclipse Moon Chestplate", "dropRate": 224 },
+        { "itemName": "Eclipse Moon Tassets", "dropRate": 224 },
+        { "itemName": "Eclipse Atlatl", "dropRate": 224 }
       ]
     },
     {
       "bossKey": "the_royal_titans",
       "displayName": "The Royal Titans",
       "uniques": [
-        { "itemName": "Sunfire Fanatic Helm", "dropRate": 300 },
-        { "itemName": "Sunfire Fanatic Cuirass", "dropRate": 300 },
-        { "itemName": "Sunfire Fanatic Chausses", "dropRate": 300 },
-        { "itemName": "Ember Staff", "dropRate": 300 },
-        { "itemName": "Icefire Shield", "dropRate": 300 }
+        { "itemName": "Fire Element Staff Crown", "dropRate": 150 },
+        { "itemName": "Ice Element Staff Crown", "dropRate": 150 },
+        { "itemName": "Mystic Vigour Prayer Scroll", "dropRate": 150 },
+        { "itemName": "Dead Eye Prayer Scroll", "dropRate": 150 },
+        { "itemName": "Giantsoul Amulet", "dropRate": 32 }
       ]
     }
   ]
