@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using OsrsSkillTracker.Data;
+using OsrsSkillTracker.Services;
 
 namespace OsrsSkillTracker;
 
@@ -24,6 +25,15 @@ public static class MauiProgram
 		var dbPath = Path.Combine(FileSystem.AppDataDirectory, "osrs_tracker.db");
 		builder.Services.AddDbContext<AppDbContext>(options =>
 			options.UseSqlite($"Data Source={dbPath}"));
+
+		builder.Services.AddSingleton<HttpClient>(_ => new HttpClient
+		{
+			Timeout = TimeSpan.FromSeconds(15)
+		});
+
+		builder.Services.AddScoped<IHiscoresService, HiscoresService>();
+		builder.Services.AddSingleton<IPollingService, PollingService>();
+		builder.Services.AddSingleton<IDropRateService, DropRateService>();
 
 		var app = builder.Build();
 

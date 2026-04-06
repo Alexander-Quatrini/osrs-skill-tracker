@@ -1,0 +1,45 @@
+{
+  "bosses": [
+    {
+      "bossKey": "zulrah",
+      "displayName": "Zulrah",
+      "uniques": [
+        { "itemName": "Tanzanite Fang", "dropRate": 128 },
+        { "itemName": "Magic Fang", "dropRate": 128 },
+        { "itemName": "Serpentine Visage", "dropRate": 128 },
+        { "itemName": "Uncut Onyx", "dropRate": 128 },
+        { "itemName": "Tanzanite Mutagen", "dropRate": 6554 },
+        { "itemName": "Magma Mutagen", "dropRate": 6554 }
+      ]
+    },
+    {
+      "bossKey": "lunar_chests",
+      "displayName": "Lunar Chests",
+      "uniques": [
+        { "itemName": "Blood Moon Helm", "dropRate": 224 },
+        { "itemName": "Blood Moon Chestplate", "dropRate": 224 },
+        { "itemName": "Blood Moon Tassets", "dropRate": 224 },
+        { "itemName": "Dual Macuahuitl", "dropRate": 224 },
+        { "itemName": "Blue Moon Helm", "dropRate": 224 },
+        { "itemName": "Blue Moon Chestplate", "dropRate": 224 },
+        { "itemName": "Blue Moon Tassets", "dropRate": 224 },
+        { "itemName": "Blue Moon Spear", "dropRate": 224 },
+        { "itemName": "Eclipse Moon Helm", "dropRate": 224 },
+        { "itemName": "Eclipse Moon Chestplate", "dropRate": 224 },
+        { "itemName": "Eclipse Moon Tassets", "dropRate": 224 },
+        { "itemName": "Eclipse Atlatl", "dropRate": 224 }
+      ]
+    },
+    {
+      "bossKey": "the_royal_titans",
+      "displayName": "The Royal Titans",
+      "uniques": [
+        { "itemName": "Fire Element Staff Crown", "dropRate": 150 },
+        { "itemName": "Ice Element Staff Crown", "dropRate": 150 },
+        { "itemName": "Mystic Vigour Prayer Scroll", "dropRate": 150 },
+        { "itemName": "Dead Eye Prayer Scroll", "dropRate": 150 },
+        { "itemName": "Giantsoul Amulet", "dropRate": 32 }
+      ]
+    }
+  ]
+}
