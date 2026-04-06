@@ -1,6 +1,8 @@
+using CommunityToolkit.Mvvm.Messaging;
 using Microsoft.EntityFrameworkCore;
 using OsrsSkillTracker.Data;
 using OsrsSkillTracker.Models;
+using OsrsSkillTracker.Services.Messages;
 using OsrsSkillTracker.Services.Models;
 
 namespace OsrsSkillTracker.Services;
@@ -19,9 +21,6 @@ public class PollingService : IPollingService, IDisposable
 
     private CancellationTokenSource? _cts;
     private Task? _loopTask;
-
-    public event EventHandler<HiscoresResult>? StatsRefreshed;
-    public event EventHandler<string>? PollingError;
 
     public bool IsRunning => _loopTask is { IsCompleted: false };
 
@@ -67,7 +66,7 @@ public class PollingService : IPollingService, IDisposable
 
         if (!result.Success)
         {
-            PollingError?.Invoke(this, result.ErrorMessage ?? "Unknown error");
+            WeakReferenceMessenger.Default.Send(new PollingErrorMessage { Error = result.ErrorMessage ?? "Unknown error" });
             return;
         }
 
@@ -76,7 +75,7 @@ public class PollingService : IPollingService, IDisposable
 
         if (player is null)
         {
-            PollingError?.Invoke(this, $"Player '{username}' not found in database.");
+            WeakReferenceMessenger.Default.Send(new PollingErrorMessage { Error = $"Player '{username}' not found in database." });
             return;
         }
 
@@ -109,13 +108,13 @@ public class PollingService : IPollingService, IDisposable
         }
         catch (Exception ex) when (ex is not OperationCanceledException)
         {
-            PollingError?.Invoke(this, "Database write failed.");
+            WeakReferenceMessenger.Default.Send(new PollingErrorMessage { Error = "Database write failed." });
             return;
         }
 
-        // Fires on a ThreadPool thread — ViewModel subscribers must marshal
-        // to the UI thread via MainThread.BeginInvokeOnMainThread(...)
-        StatsRefreshed?.Invoke(this, result);
+        // Sends on a ThreadPool thread — ViewModel recipients must marshal UI updates
+        // via MainThread.BeginInvokeOnMainThread(...)
+        WeakReferenceMessenger.Default.Send(new StatsRefreshedMessage { Result = result });
     }
 
     public void Dispose() => Stop();
