@@ -67,6 +67,9 @@ public partial class DashboardViewModel : BaseViewModel
         var username = Preferences.Get("active_username", string.Empty);
         if (string.IsNullOrEmpty(username)) return;
 
+        if (!_polling.IsRunning)
+            _polling.Start(username);
+
         var player = await _db.Players.FirstOrDefaultAsync(p => p.Username == username);
         if (player is null) return;
 
@@ -273,10 +276,10 @@ public partial class DashboardViewModel : BaseViewModel
     }
 
     [RelayCommand]
-    void ChangePlayer()
+    async Task ChangePlayerAsync()
     {
         Preferences.Remove("active_username");
         _polling.Stop();
-        Shell.Current.GoToAsync("//search");
+        await Shell.Current.GoToAsync("//search");
     }
 }

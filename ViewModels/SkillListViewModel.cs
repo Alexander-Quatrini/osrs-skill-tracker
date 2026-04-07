@@ -4,7 +4,6 @@ using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using Microsoft.EntityFrameworkCore;
 using OsrsSkillTracker.Data;
-using OsrsSkillTracker.Services;
 using OsrsSkillTracker.Services.Messages;
 
 namespace OsrsSkillTracker.ViewModels;
@@ -12,12 +11,10 @@ namespace OsrsSkillTracker.ViewModels;
 public partial class SkillListViewModel : BaseViewModel
 {
     private readonly AppDbContext _db;
-    private readonly IPollingService _polling;
 
-    public SkillListViewModel(AppDbContext db, IPollingService polling)
+    public SkillListViewModel(AppDbContext db)
     {
         _db = db;
-        _polling = polling;
         Title = "Skills";
 
         WeakReferenceMessenger.Default.Register<StatsRefreshedMessage>(this, (recipient, message) =>

@@ -32,6 +32,9 @@ public partial class GoalViewModel : BaseViewModel, IQueryAttributable
     [ObservableProperty]
     List<SkillPickerItem> availableSkills = [];
 
+    [ObservableProperty]
+    string errorMessage = string.Empty;
+
     public void ApplyQueryAttributes(IDictionary<string, object> query)
     {
         if (query.TryGetValue("goalId", out var goalIdObj) && goalIdObj is int goalId)
@@ -43,41 +46,55 @@ public partial class GoalViewModel : BaseViewModel, IQueryAttributable
 
     private async void LoadGoalForEditing(int goalId)
     {
-        var goal = await _db.Goals
-            .Include(g => g.Requirements)
-            .FirstOrDefaultAsync(g => g.Id == goalId);
+        try
+        {
+            var goal = await _db.Goals
+                .Include(g => g.Requirements)
+                .FirstOrDefaultAsync(g => g.Id == goalId);
 
-        if (goal is null) return;
+            if (goal is null) return;
 
-        _editingGoalId = goalId;
-        GoalName = goal.Name;
-        GoalExists = true;
+            _editingGoalId = goalId;
+            GoalName = goal.Name;
+            GoalExists = true;
 
-        await EnsureAvailableSkillsLoaded();
+            await EnsureAvailableSkillsLoaded();
 
-        Requirements = new ObservableCollection<GoalRequirementRowViewModel>(
-            goal.Requirements.Select(req =>
-            {
-                var skill = AvailableSkills.FirstOrDefault(s => s.Id == req.SkillId);
-                return new GoalRequirementRowViewModel
+            Requirements = new ObservableCollection<GoalRequirementRowViewModel>(
+                goal.Requirements.Select(req =>
                 {
-                    SelectedSkillId = req.SkillId,
-                    SelectedSkillName = skill?.Name ?? string.Empty,
-                    TargetLevel = req.TargetLevel
-                };
-            }));
+                    var skill = AvailableSkills.FirstOrDefault(s => s.Id == req.SkillId);
+                    return new GoalRequirementRowViewModel
+                    {
+                        SelectedSkillId = req.SkillId,
+                        SelectedSkillName = skill?.Name ?? string.Empty,
+                        TargetLevel = req.TargetLevel
+                    };
+                }));
+        }
+        catch (Exception ex)
+        {
+            ErrorMessage = ex.Message;
+        }
     }
 
     private async void AddPreselectedRequirement(int skillId)
     {
-        await EnsureAvailableSkillsLoaded();
-        var skill = AvailableSkills.FirstOrDefault(s => s.Id == skillId);
-        Requirements.Add(new GoalRequirementRowViewModel
+        try
         {
-            SelectedSkillId = skillId,
-            SelectedSkillName = skill?.Name ?? string.Empty,
-            TargetLevel = 1
-        });
+            await EnsureAvailableSkillsLoaded();
+            var skill = AvailableSkills.FirstOrDefault(s => s.Id == skillId);
+            Requirements.Add(new GoalRequirementRowViewModel
+            {
+                SelectedSkillId = skillId,
+                SelectedSkillName = skill?.Name ?? string.Empty,
+                TargetLevel = 1
+            });
+        }
+        catch (Exception ex)
+        {
+            ErrorMessage = ex.Message;
+        }
     }
 
     private async Task EnsureAvailableSkillsLoaded()
