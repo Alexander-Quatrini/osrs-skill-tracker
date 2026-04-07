@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Logging;
 using OsrsSkillTracker.Data;
 using OsrsSkillTracker.Services;
+using OsrsSkillTracker.ViewModels;
 
 namespace OsrsSkillTracker;
 
@@ -34,6 +35,13 @@ public static class MauiProgram
 		builder.Services.AddScoped<IHiscoresService, HiscoresService>();
 		builder.Services.AddSingleton<IPollingService, PollingService>();
 		builder.Services.AddSingleton<IDropRateService, DropRateService>();
+
+		builder.Services.AddTransient<PlayerSearchViewModel>();
+		builder.Services.AddTransient<DashboardViewModel>();
+		builder.Services.AddTransient<SkillListViewModel>();
+		builder.Services.AddTransient<SkillDetailViewModel>();
+		builder.Services.AddTransient<BossLogViewModel>();
+		builder.Services.AddTransient<GoalViewModel>();
 
 		var app = builder.Build();
 
